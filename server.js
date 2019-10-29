@@ -32,21 +32,19 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/about', async function(req, res) {
-  try {
-    await res.render('about', {
+app.get('/about', function(req, res) {
+  res.render('about', {
       locals: {
         title: 'About!',
-        loggedIn: true,
+        // loggedIn: true
       },
       partials: {
         header: 'header',
         footer: 'footer',
       },
+    }, (...args) => {
+      console.log('args', args);
     });
-  } catch (err) {
-    res.status(500).send(err);
-  }
 });
 
 app.listen(PORT, () => {
