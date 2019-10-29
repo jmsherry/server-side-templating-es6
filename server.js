@@ -36,14 +36,15 @@ app.get('/about', function(req, res) {
   res.render('about', {
       locals: {
         title: 'About!',
-        // loggedIn: true
+        // loggedIn: true // <-- missing variable
       },
       partials: {
         header: 'header',
         footer: 'footer',
       },
-    }, (...args) => {
-      console.log('args', args);
+    }, (err, html) => {
+      if (err) return res.status(500).send(err);
+      res.status(200).send(html);
     });
 });
 
